@@ -95,7 +95,7 @@ function enviarSaudacao(array) {
         if (element.horario === 17) {
             console.log("Horario das 17h");
             for (const elem of element.participantes) {
-                console.log(`Bom dia ${elem}, a reunião irá acontecer as 17h.`)
+                console.log(`Bom dia ${elem}, a reunião irá acontecer as 20h.`)
             }
             console.log('');
         }
@@ -104,7 +104,7 @@ function enviarSaudacao(array) {
         if (element.horario === 16) {
             console.log("Horario das 16h")
             for (const elem of element.participantes) {
-                console.log(`Bom dia ${elem}, a reunião irá acontecer as 17h.`)
+                console.log(`Bom tarde ${elem}, a reunião irá acontecer as 20.`)
             }
             console.log('');
         }
@@ -113,7 +113,7 @@ function enviarSaudacao(array) {
         if (element.horario === 15) {
             console.log("Horario das 15h")
             for (const elem of element.participantes) {
-                console.log(`Bom dia ${elem}, a reunião irá acontecer as 17h.`)
+                console.log(`Bom noite ${elem}, a reunião irá acontecer as 20.`)
             }
             console.log('');
         }

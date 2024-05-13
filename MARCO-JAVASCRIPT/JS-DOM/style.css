@@ -1,0 +1,18 @@
+.container {
+    height: 900px;
+    width: 100%;
+    background-color: #ddd;
+    display: flex;
+}
+
+.container-1 {
+    height: 50%;
+    background-color: red;
+    width: 50%;
+}
+
+.container-2 {
+    height: 50%;
+    background-color: blue;
+    width: 50%;
+}
