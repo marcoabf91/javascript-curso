@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Básico</title>
+</head>
+
+<style>
+/* Style Css*/
+
+.h1 {
+    font-family: sans-serif;
+}
+
+</style>
+
+
+
+<body id="container">
+    <!-- HTML -->
+    <h1 class="h1" id="h1-valor">Olá mundo</h1>
+    <input type="text" id="input-valor" placeholder="digite um valor"/>
+    <button onclick="clicar()">Alterar</button>
+
+    
+    <script>
+    // JavaScript
+    // SELETORES - são propriedades nos Elementos HTML
+    // que podemos resgatar dentro do JS
+    const valor = document.getElementById("h1-valor");
+    const inputValor = document.getElementById("input-valor");
+    const body = document.getElementById("container");
+
+    let handle = true;
+
+    // EVENTOS - são situações dinâmicas que podem ocorre numa página
+    function clicar() {
+        valor.textContent = inputValor.value;
+        
+        if (inputValor.value.length === 0) {
+            return alert('Digite um valor');
+        }
+
+        if (handle === true) {
+            body.style = "background-color: #333;";
+            handle = false;   
+        } else {
+            body.style = "background-color: white;";  
+            handle = true;
+        }
+    }
+
+    </script>
+</body>
+
+
+
+</html>
