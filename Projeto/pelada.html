@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2 id="title-pelada"></h2>
+<div id="cadastrojogadores"></div>
+
+
+    <script>
+        const cadastrojogadores = document.getElementById("cadastrojogadores")
+        const titulo = document.getElementById("title-pelada");
+        const param = new URLSearchParams(window.location.search)
+        const nomePelada = param.get("nome")
+        console.log(nomePelada)
+
+        titulo.innerHTML = nomePelada
+        cadastrojogadores.innerHTML = `<a href="cadastrojogadores.html?nome=${nomePelada}" target="_blank">Cadastrar Jogador</a>`
+    </script>
+</body>
+
+</html>

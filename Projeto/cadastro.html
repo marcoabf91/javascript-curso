@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="">
+        <input type="text" placeholder="Nome" id="nome" required>
+        <input type="email" placeholder="E-mail" id="email" required>
+        <input type="password" placeholder="Senha" id="senha" required>
+        <button onclick="registrar(event)">Registrar</button>
+    </form>
+
+    <script>
+        if (!localStorage.getItem("usuarios")) {
+            localStorage.setItem("usuarios", JSON.stringify([]));
+        }
+        const nome = document.getElementById("nome");
+        const email = document.getElementById("email");
+        const senha = document.getElementById("senha");
+
+        // Função para validar o formato do e-mail
+        function validarEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // Função para validar a senha
+        function validarSenha(senha) {
+            // Pelo menos 7 caracteres, 1 número, 1 letra maiúscula e 1 caractere especial
+            const re = /^(?=.*\d)(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[0-9a-zA-Z!@#$%^&*()_+]{7,}$/;
+            return re.test(senha);
+        }
+
+        function registrar(event) {
+            event.preventDefault();
+
+            // Verifica se todos os campos estão preenchidos
+            if (nome.value.trim() === '' || email.value.trim() === '' || senha.value.trim() === '') {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+
+            // Valida o formato do e-mail
+            if (!validarEmail(email.value)) {
+                alert('Por favor, insira um endereço de e-mail válido.');
+                return;
+            }
+
+            // Valida a senha
+            if (!validarSenha(senha.value)) {
+                alert('A senha deve ter no mínimo 7 caracteres, pelo menos 1 número, 1 letra maiúscula e 1 caractere especial.');
+                return;
+            }
+
+            const usuarios = JSON.parse(localStorage.getItem("usuarios"));
+
+            // Verifica se o e-mail já está cadastrado
+            const emailExistente = usuarios.find(user => user.email === email.value);
+            if (emailExistente) {
+                alert('Este e-mail já está cadastrado. Por favor, utilize outro.');
+                return;
+            }
+
+            const usuario = {
+                nome: nome.value,
+                email: email.value,
+                senha: senha.value
+            };
+
+            usuarios.push(usuario);
+            localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+            // Limpar campos após registro (opcional)
+            nome.value = '';
+            email.value = '';
+            senha.value = '';
+
+            alert('Usuário registrado com sucesso!');
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+
+</html>

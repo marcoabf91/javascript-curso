@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <input type="text" placeholder="Nome da pelada" id="pelada">
+         <button onclick="cadastrar(event)">Cadastrar</button>
+    </form>
+    <script>
+        if (!localStorage.getItem("pelada")) {
+            localStorage.setItem("pelada", JSON.stringify([]));
+        }
+        const pelada = document.getElementById("pelada")
+        function cadastrar(event) {
+            event.preventDefault();
+            const resultado = {
+                nomePelada: pelada.value, 
+                jogadores: []
+            }
+            const peladas = JSON.parse(localStorage.getItem("pelada"))
+            peladas.push(resultado)
+            localStorage.setItem("pelada", JSON.stringify(peladas))
+
+        }
+    </script>
+</body>
+</html>

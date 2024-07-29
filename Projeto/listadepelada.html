@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="resultados">
+
+    </div>
+
+
+    <script>
+        const resultados = document.getElementById("resultados")
+        const peladas = JSON.parse(localStorage.getItem("pelada"))
+
+        for (const element of peladas) 
+            resultados.innerHTML += `
+            <p> ${element.nomePelada} </p>
+            <a href="pelada.html?nome=${element.nomePelada}" target="_blank">Acessar pelada</a>
+        `
+        
+    </script>
+</body>
+
+</html>
