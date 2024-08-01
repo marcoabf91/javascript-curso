@@ -1,31 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
+    <a href="listadepelada.html">Suas peladas</a>
+
     <form action="">
         <input type="text" placeholder="Nome da pelada" id="pelada">
-         <button onclick="cadastrar(event)">Cadastrar</button>
+        <button onclick="cadastrar(event)">Cadastrar</button>
     </form>
-    <script>
-        if (!localStorage.getItem("pelada")) {
-            localStorage.setItem("pelada", JSON.stringify([]));
-        }
-        const pelada = document.getElementById("pelada")
-        function cadastrar(event) {
-            event.preventDefault();
-            const resultado = {
-                nomePelada: pelada.value, 
-                jogadores: []
-            }
-            const peladas = JSON.parse(localStorage.getItem("pelada"))
-            peladas.push(resultado)
-            localStorage.setItem("pelada", JSON.stringify(peladas))
 
-        }
+    <script>
+        // VERIFICA SE NÃO existe NO LOCAL STORAGE a TABELA CHAMADA "pelada"
+        if (!localStorage.getItem("pelada")) {
+            // SE NÃO EXISTE CRIA UMA TABELA COM UM ARRAY VAZIO
+            localStorage.setItem("pelada", JSON.stringify([]));
+        };
+
+        // SELETOR
+        const pelada = document.getElementById("pelada");
+
+
+        function cadastrar(event) {
+            // EVITA DA PAGINA ATUALIZAR AUTOMATICAMENTE
+            event.preventDefault();
+
+            // Objeto resultado, que contém o nome da pelada e os jogadores dessa pelada
+            const resultado = {
+                nomePelada: pelada.value,
+                jogadores: []
+            };
+
+            // RESGATANDO A TABELA DO LOCAL STORAGE COMO ARRAY
+            const peladas = JSON.parse(localStorage.getItem("pelada"));
+
+            // ADICIONANDO NO ARRAY o objeto resultado
+            peladas.push(resultado);
+
+            // ENVIANDO PARA O LOCAL STORAGE
+            localStorage.setItem("pelada", JSON.stringify(peladas));
+        };
     </script>
 </body>
+
 </html>

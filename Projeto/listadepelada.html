@@ -8,21 +8,28 @@
 </head>
 
 <body>
+    <!-- O elemento abaixo serve para listar dados dinâmicamentes -->
     <div id="resultados">
-
+        <!-- Os dados do localstorage serão insiridos aqui dentro -->
     </div>
 
 
     <script>
-        const resultados = document.getElementById("resultados")
-        const peladas = JSON.parse(localStorage.getItem("pelada"))
+        // Resgatando a tabela "pelada" do LocalStorage
+        const peladas = JSON.parse(localStorage.getItem("pelada"));
 
+        // SELETOR
+        const resultados = document.getElementById("resultados");
+
+        // para Cada elemento dentro da tabela de pelada(array)
         for (const element of peladas) 
             resultados.innerHTML += `
-            <p> ${element.nomePelada} </p>
-            <a href="pelada.html?nome=${element.nomePelada}" target="_blank">Acessar pelada</a>
-        `
-        
+                <p> ${element.nomePelada} </p>
+                <a href="pelada.html?nome=${element.nomePelada}" target="_blank">Acessar pelada</a>
+            `
+        // na linha 27 um paragrafo com o nome da pelada
+        // na linha 28 um link de navegação para acessar a pagina da pelada
+
     </script>
 </body>
 

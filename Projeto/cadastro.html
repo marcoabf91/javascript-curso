@@ -8,7 +8,11 @@
 </head>
 
 <body>
-    <form action="">
+    <nav>
+        <a href="login.html">Login</a>
+    </nav>
+
+    <form>
         <input type="text" placeholder="Nome" id="nome" required>
         <input type="email" placeholder="E-mail" id="email" required>
         <input type="password" placeholder="Senha" id="senha" required>
@@ -16,17 +20,21 @@
     </form>
 
     <script>
+
+        // Verificando senão existe a *tabela usuarios dentro do localStorage
         if (!localStorage.getItem("usuarios")) {
-            localStorage.setItem("usuarios", JSON.stringify([]));
-        }
-        const nome = document.getElementById("nome");
-        const email = document.getElementById("email");
-        const senha = document.getElementById("senha");
+            localStorage.setItem("usuarios", JSON.stringify([])); // vai criar a *tabela usuarios, insirando um array vazio
+        };
+
+        // Seletores: buscam elementos no HTML
+        const nome = document.getElementById("nome"); // Seletor buscando por id
+        const email = document.getElementById("email"); // Seletor buscando por id
+        const senha = document.getElementById("senha"); // Seletor buscando por id
 
         // Função para validar o formato do e-mail
         function validarEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Vefica se o email digitado está no padrão correto
+            return re.test(email); // padrão: marco@email.com      não é padrão: marcoemail
         }
 
         // Função para validar a senha
@@ -37,10 +45,11 @@
         }
 
         function registrar(event) {
-            event.preventDefault();
+            event.preventDefault(); // Previne que a página atualize
 
             // Verifica se todos os campos estão preenchidos
-            if (nome.value.trim() === '' || email.value.trim() === '' || senha.value.trim() === '') {
+            // método trim verifica se o usuario escreveu da seguinte forma: "marco@email.com " < ele verifica o espaço a mais
+            if (nome.value.trim() === '' || email.value.trim() === '' || senha.value.trim() === '') { 
                 alert('Por favor, preencha todos os campos.');
                 return;
             }
@@ -57,6 +66,7 @@
                 return;
             }
 
+            // RESGATANDO A TABELA usuarios do localStorage E TRANSFORMANDO PARA JAVASCRIPT com JSON.parse()
             const usuarios = JSON.parse(localStorage.getItem("usuarios"));
 
             // Verifica se o e-mail já está cadastrado
@@ -72,7 +82,10 @@
                 senha: senha.value
             };
 
+            // ADICIONANDO NO ARRAY
             usuarios.push(usuario);
+
+            // ENVIANDO PARA O LOCALSTORAGE
             localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
             // Limpar campos após registro (opcional)
@@ -82,7 +95,7 @@
 
             alert('Usuário registrado com sucesso!');
             window.location.href = "login.html";
-        }
+        };
     </script>
 </body>
 

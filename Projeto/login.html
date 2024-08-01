@@ -1,38 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <form action="">
         <input type="e-mail" placeholder="E-mail" id="email">
         <input type="password" placeholder="Senha" id="senha">
         <button onclick="login(event)">Login</button>
-
     </form>
-<script>
-     const usuarios = JSON.parse(localStorage.getItem("usuarios"));
-     const email = document.getElementById("email")
-     const senha = document.getElementById("senha")
 
-     function login() {
-        event.preventDefault();
+    <script>
+        // RESGATANDO DO LOCALSTORAGE
+        const usuarios = JSON.parse(localStorage.getItem("usuarios"));
 
-        for (const element of usuarios) {
-            if (element.email === email.value && element.senha === senha.value) {
-                window.location.href = "paineldousuario.html"
-                return null
+        // SELETORES
+        const email = document.getElementById("email")
+        const senha = document.getElementById("senha")
+
+        function login() {
+            event.preventDefault();
+
+            // PARA CADA ELEMENTO DENTRO DO ARRAY de usuarios
+            for (const element of usuarios) {
+                // VERIFICA SE EXISTE ALGUM USUARIO COM EMAIL E SENHA IGUAL OS DADOS INFORMADOS
+                if (element.email === email.value && element.senha === senha.value) {
+                    window.location.href = "paineldousuario.html"
+                    return null
+                };
             }
-        }
-        return alert("Este usuário não existe ou dados incorreto")
-        
-     }
-     
-  
+            return alert("Este usuário não existe ou dados incorreto");
 
-
-</script>
+        };
+    </script>
 </body>
+
 </html>

@@ -9,18 +9,25 @@
 
 <body>
     <h2 id="title-pelada"></h2>
-<div id="cadastrojogadores"></div>
+    <div id="cadastrojogadores"></div>
 
 
     <script>
-        const cadastrojogadores = document.getElementById("cadastrojogadores")
-        const titulo = document.getElementById("title-pelada");
-        const param = new URLSearchParams(window.location.search)
-        const nomePelada = param.get("nome")
-        console.log(nomePelada)
+        // RESGATANDO O PARAMETRO
+        const param = new URLSearchParams(window.location.search);
 
-        titulo.innerHTML = nomePelada
-        cadastrojogadores.innerHTML = `<a href="cadastrojogadores.html?nome=${nomePelada}" target="_blank">Cadastrar Jogador</a>`
+        // SALVANDO o parametro dentro da variavel nomePelada
+        const nomePelada = param.get("nome");
+
+        // SELETORES
+        const cadastrojogadores = document.getElementById("cadastrojogadores");
+        const titulo = document.getElementById("title-pelada");
+        
+        // Colocando dentro do titulo o nome da pelada que veio de parametro
+        titulo.innerHTML = nomePelada;
+
+        // Enviando o parametro para a navegação da pagina de casdastro de jogadores
+        cadastrojogadores.innerHTML = `<a href="cadastrojogadores.html?nome=${nomePelada}" target="_blank">Cadastrar Jogador</a>`;
     </script>
 </body>
 
